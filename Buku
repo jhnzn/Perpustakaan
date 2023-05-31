@@ -1,0 +1,65 @@
+package Perpus;
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Buku {
+
+    private ArrayList<String> namaBuku = new ArrayList<String>();
+    private ArrayList<Integer> Stok = new ArrayList<Integer>();
+    private ArrayList<Integer> Harga = new ArrayList<Integer>();
+
+    public Buku() {
+
+        this.namaBuku.add("Matematika");
+        this.Stok.add(10);
+        this.Harga.add(25000);
+
+        this.namaBuku.add("Kamus Bahasa Inggris");
+        this.Stok.add(5);
+        this.Harga.add(20000);
+        
+        this.namaBuku.add("Tutorial masuk surga");
+        this.Stok.add(15);
+        this.Harga.add(30000);
+
+    }
+
+    public int size() {
+        return this.namaBuku.size();
+    }
+
+    public void setNama(String Nama) {
+        this.namaBuku.add(Nama);
+    }
+
+    public void setStok(int id, int Stok) {
+        this.Stok.set(id, Stok);
+    }
+
+    public void setHarga(int Harga) {
+        this.Harga.add(Harga);
+    }
+
+    public String getNamaBuku(int id) {
+        return this.namaBuku.get(id);
+    }
+
+    public int getStok(int id) {
+        return this.Stok.get(id);
+    }
+
+    public int getHarga(int id) {
+        return this.Harga.get(id);
+    }
+
+    public void tampilBuku() {
+        int n = this.namaBuku.size();
+        for (int i = 0; i < n; i++) {
+            System.out.println("--------------------------");
+            System.out.println("Nama    = " + getNamaBuku(i));
+            System.out.println("Harga  = " + getHarga(i));
+            System.out.println("Stok = " + getStok(i));
+        }
+    }
+}
