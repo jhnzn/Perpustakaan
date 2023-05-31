@@ -1,0 +1,208 @@
+package Perpus;
+
+import java.util.Scanner;
+
+public class Main {
+
+    Scanner input = new Scanner(System.in);
+
+    Buku buku = new Buku();
+    Peminjaman pinjam = new Peminjaman();
+    Petugas petugas = new Petugas();
+    Siswa siswa = new Siswa();
+    int PilihBuku = 0;
+    int id;
+    int bukupinjaman=4;
+
+    int balik;
+
+    public void identitas() {
+        System.out.print("Masukkan ID Siswa: ");
+        id=input.nextInt();
+        System.out.println("Selamat datang " + siswa.getNama(pinjam.getidSiswa(id)));
+        System.out.println("");
+    }
+
+    public void menu() {
+        System.out.println("------Perpustakaan NEO-----");
+        System.out.println("1. List Buku");
+        System.out.println("2. List Pegawai");
+        System.out.println("3. Pinjam Buku");
+        System.out.println("4. Mengembalikan Buku");
+        System.out.println("5. Beli buku");
+        System.out.println("6. Exit");
+        System.out.print("masukkan pilihan: ");
+        int pilih=input.nextInt();
+
+        if (pilih == 1) {
+            buku.tampilBuku();
+            System.out.println("Mau ke menu awal?[1.ya/2.tidak] ");
+            int a=input.nextInt();
+            if (a == 1) {
+                System.out.println("");
+                menu();
+            }
+
+        } else if (pilih == 2) {
+            petugas.tampilkanPetugas();
+            System.out.println("Mau ke menu awal?[1.ya/2.tidak] ");
+            int b=input.nextInt();
+            if (b == 1) {
+                System.out.println("");
+                menu();
+            }
+
+        } else if (pilih == 3) {
+            buku.tampilBuku();
+            System.out.println("");
+            System.out.println("Pilih buku yang ingin ada pinjam: ");
+            PilihBuku=input.nextInt();
+            if (buku.getStok(PilihBuku - 1) > 0) {
+                buku.setStok(PilihBuku-1, buku.getStok(PilihBuku-1) - 1);
+                siswa.setStatus(pinjam.getidSiswa(id), false);
+                bukupinjaman =PilihBuku;
+                System.out.println("");
+                if (PilihBuku == 1) {
+                    System.out.println("Anda memilih buku " + buku.getNamaBuku(PilihBuku - 1));
+                    System.out.println("Judul Buku: " + buku.getNamaBuku(PilihBuku - 1));
+                    System.out.println("Harga Buku: " + buku.getHarga(PilihBuku - 1));
+                    System.out.println("Stok: " + buku.getStok(PilihBuku - 1));
+                } else if (PilihBuku == 2) {
+                    System.out.println("Anda memilih buku " + buku.getNamaBuku(PilihBuku - 1));
+                    System.out.println("Judul Buku: " + buku.getNamaBuku(PilihBuku - 1));
+                    System.out.println("Harga Buku: " + buku.getHarga(PilihBuku - 1));
+                    System.out.println("Stok: " + buku.getStok(PilihBuku - 1));
+                } else if (PilihBuku == 3) {
+                    System.out.println("Anda memilih buku " + buku.getNamaBuku(PilihBuku - 1));
+                    System.out.println("Judul Buku: " + buku.getNamaBuku(PilihBuku - 1));
+                    System.out.println("Harga Buku: " + buku.getHarga(PilihBuku - 1));
+                    System.out.println("Stok: " + buku.getStok(PilihBuku - 1));
+                }
+                
+            } else if (siswa.getStatus(PilihBuku) != true) {
+                System.out.println("Anda sudah meminjam buku sebelumnya");
+            }
+            System.out.println("Apakah Anda yakin akan meminjam? [1.ya/2.tidak]");
+            int iya = input.nextInt();
+            if (iya == 1) {
+                System.out.println("Terima Kasih sudah meminjam buku " + buku.getNamaBuku(PilihBuku - 1));
+                System.out.println("Anda tidak boleh meminjam buku lain sebelum buku ini dikembalikan");
+                System.out.println("Mau lihat menu lain? [1.ya/2.tidak]");
+                int y = input.nextInt();
+                if (y == 1) {
+                    System.out.println("");
+                    menu();
+                }
+            }
+            if (iya == 2) {
+                System.out.println("Mau lihat menu lain? [1.ya/2.tidak]");
+                int t = input.nextInt();
+                if (t == 1) {
+                    System.out.println("");
+                    menu();
+                }
+            }
+        } else if (pilih == 5) {
+
+            int total;
+            buku.tampilBuku();
+            System.out.print("Silakan pilih buku yang akan dibeli: ");
+            int pilihan = input.nextInt();
+            System.out.print("Jumlah beli: ");
+            int jumlah = input.nextInt();
+            pinjam.setbanyak(jumlah);
+
+            if (pinjam.getbanyak(pinjam.getidbanyak(jumlah)) <= buku.getStok(pilihan - 1)) {
+                int stokAwal = buku.getStok(pilihan-1);
+                System.out.println("Anda membeli buku " + buku.getNamaBuku(pilihan - 1));
+
+                if (pilihan == 1) {
+                    total = jumlah * 25000;
+                    System.out.println("Jumlah yang harus dibayarkan: " + total);
+                    System.out.print("Uang anda: ");
+                    int uang = input.nextInt();
+                    if (uang < total) {
+                        System.out.println("Uang anda kurang");
+                    } else if (uang == total) {
+                        System.out.println("Uang anda pas");
+                    } else if (uang > total) {
+                        int kembalian = uang - total;
+                        System.out.println("Kembalian anda: " + kembalian);
+                    }
+                } else if (pilihan == 2) {
+                    total = jumlah * 20000;
+                    System.out.println("Jumlah yang harus dibayarkan: " + total);
+                    System.out.print("Uang anda: ");
+                    int uang = input.nextInt();
+                    if (uang < total) {
+                        System.out.println("Uang anda kurang");
+                    } else if (uang == total) {
+                        System.out.println("Uang anda pas");
+                    } else if (uang > total) {
+                        int kembalian = uang - total;
+                        System.out.println("Kembalian anda: " + kembalian);
+                    }
+                } else if (pilihan == 3) {
+                    total = jumlah * 100000;
+                    System.out.println("Jumlah yang harus dibayarkan: " + total);
+                    System.out.print("Uang anda: ");
+                    int uang = input.nextInt();
+                    if (uang < total) {
+                        System.out.println("Uang anda kurang");
+                    } else if (uang == total) {
+                        System.out.println("Uang anda pas");
+                    } else if (uang > total) {
+                        int kembalian = uang - total;
+                        System.out.println("Kembalian anda: " + kembalian);
+                    }
+                }
+                System.out.println("Apakah mau melihat menu lain? [1.ya/2.tidak]");
+                int mboh = input.nextInt();
+                if (mboh == 1) {
+                    System.out.println("");
+                    menu();
+                }
+            } else {
+                System.out.println("Jumlah yang anda inginkan melebihi stok yg ada");
+                
+            }
+
+        } else if (pilih == 4) {
+
+            System.out.print("Masukkan id buku yang ingin anda kembalikan: ");
+            balik = input.nextInt();
+            if (siswa.getStatus(pinjam.getidSiswa(id)) == false) {
+                if (bukupinjaman == balik) {
+                    buku.setStok(balik  -1, buku.getStok(balik-1) + 1);
+                    System.out.println("Terimakasih telah mengembalikan buku " + buku.getNamaBuku(balik - 1));
+                    siswa.setStatus(pinjam.getidSiswa(PilihBuku), true);
+                } else {
+                    System.out.println("Buku yang anda kembalikan tidak sesuai");
+                    System.out.println("Apakah mau melihat menu lain? [1.ya/2.tidak]");
+                    int k = input.nextInt();
+                    if (k == 1) {
+                        System.out.println("");
+                        menu();
+                    }
+                }
+                System.out.println("Apakah mau meminjam buku lain? [1.ya/2.tidak]");
+                int ya = input.nextInt();
+                if (ya == 1) {
+                    System.out.println("");
+                    menu();
+                }
+            } else {
+                System.out.println("Anda belum meminjam buku");
+                System.out.println("Apakah mau melihat menu lain? [1.ya/2.tidak]");
+                int gatau = input.nextInt();
+                if (gatau == 1) {
+                    System.out.println("");
+                    menu();
+                }
+            }
+        } else if (pilih == 6) {
+
+            System.out.println("Terima kasih ");
+        }
+            }
+        }
