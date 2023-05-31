@@ -1,0 +1,51 @@
+package Perpus;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Peminjaman{
+    static Scanner input = new Scanner(System.in);  
+
+        private ArrayList<Integer> idSiswa=new ArrayList <Integer>();
+        private ArrayList<Integer> idBuku=new ArrayList <Integer>();
+        private ArrayList<Integer> Banyak=new ArrayList <Integer>();
+        
+        public Buku buku = new Buku();
+        public Siswa siswa=new Siswa();
+        
+        public Peminjaman() {
+        this.idSiswa.add(1);
+        this.idSiswa.add(2);
+        this.idSiswa.add(3);
+
+    }
+
+    public void setsiswa(int id) {
+        this.idSiswa.add(id);
+    }
+
+    public int getidSiswa(int id) {
+        return this.idSiswa.indexOf(id);
+    }
+
+    public void setbuku(int id) {
+        this.idBuku.add(id);
+    }
+
+    public int getbuku(int id) {
+        return this.idBuku.indexOf(id);
+    }
+
+    public void setbanyak(int banyak) {
+        this.Banyak.add(banyak);
+    }
+
+    public int getidbanyak(int banyak) {
+        return this.Banyak.indexOf(banyak);
+    }
+
+    public int getbanyak(int id) {
+        return this.Banyak.get(id);
+    }
+
+        }
