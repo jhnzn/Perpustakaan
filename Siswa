@@ -1,7 +1,6 @@
 package Perpus;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 public class Siswa implements User {  
     private ArrayList<String> nama = new ArrayList<String>();
