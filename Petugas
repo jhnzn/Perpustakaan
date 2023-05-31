@@ -1,0 +1,66 @@
+package Perpus;
+ 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Petugas implements User  {
+    private ArrayList<String> nama=new ArrayList <String>();
+    private ArrayList<String> Alamat=new ArrayList <String>();
+    private ArrayList<String> Telepon=new ArrayList <String>();
+
+   public Petugas(){
+        
+        this.nama.add("Jaehyun") ;
+        this.Alamat.add("Jakarta");
+        this.Telepon.add("081233564");
+        
+        this.nama.add("Sunghoon");
+        this.Alamat.add("Cirebon");
+        this.Telepon.add("08123623543");
+        
+        this.nama.add("Nanami");
+        this.Alamat.add("Isekai");
+        this.Telepon.add("081363542");
+    }
+   
+     
+    @Override
+    public void setNama(String nama) {
+        this.nama.add(nama);
+    }
+
+    @Override
+    public void setAlamat(String Alamat) {
+        this.Alamat.add (Alamat);
+    }
+
+    @Override
+    public void setTelepon(String Telepon) {
+        this.Telepon.add(Telepon);
+    }
+    
+     @Override
+    public String getNama(int id) {
+        return this.nama.get(id);
+    }
+    
+    @Override
+    public String getAlamat(int id) {
+        return this. Alamat.get(id);
+    }
+
+    @Override
+    public String getTelepon(int id) {
+        return this.Telepon.get(id);
+    }
+    
+     public void tampilkanPetugas(){
+        int n = this.nama.size();
+        for(int i = 0;i<n;i++){
+            System.out.println("--------------------------");
+            System.out.println("Nama    = " + getNama(i));
+            System.out.println("Alamat  = " + getAlamat(i));
+            System.out.println("Telepon = " + getTelepon(i));
+        }
+     }       
+}
