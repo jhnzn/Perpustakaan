@@ -1,0 +1,80 @@
+package Perpus;
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Siswa implements User {  
+    private ArrayList<String> nama = new ArrayList<String>();
+    private ArrayList<String> Alamat = new ArrayList<String>();
+    private ArrayList<String> Telepon = new ArrayList<String>();
+    private ArrayList<Boolean> Status = new ArrayList<Boolean>();
+
+    public Siswa(){
+        
+        this.nama.add("Jeno");
+        this.Alamat.add("Jakarta");
+        this.Telepon.add("081234634");
+        this.Status.add(true);
+        
+        this.nama.add("Haechan");
+        this.Alamat.add("Bandung");
+        this.Telepon.add("0812743725");
+        this.Status.add(true);
+        
+        this.nama.add("Jake");
+        this.Alamat.add("Malang");
+        this.Telepon.add("081363542");
+        this.Status.add(true);
+    }
+    
+    
+    
+    @Override
+    public void setNama(String nama) {
+        this.nama.add(nama);
+    }
+
+    @Override
+    public void setAlamat(String Alamat) {
+        this.Alamat.add (Alamat);
+    }
+
+    @Override
+    public void setTelepon(String Telepon) {
+        this.Telepon.add(Telepon);
+    }
+
+    
+    public void setStatus(int id, boolean Status){
+        this.Status.set(id, Status);
+    }
+
+    @Override
+    public String getNama(int id) {
+        return this.nama.get(id);
+    }
+    
+    @Override
+    public String getAlamat(int id) {
+        return this. Alamat.get(id);
+    }
+
+    @Override
+    public String getTelepon(int id) {
+        return this.Telepon.get(id);
+    }
+
+    public boolean getStatus(int id){
+        return this.Status.get(id);
+    }
+      public void tampilkanSiswa(){
+        int n = this.nama.size();
+        for(int i = 0;i<n;i++){
+            System.out.println("--------------------------");
+            System.out.println("Nama    = " + getNama(i));
+            System.out.println("Alamat  = " + getAlamat(i));
+            System.out.println("Telepon = " + getTelepon(i));
+            System.out.println("Status = "+getStatus(i));
+        }     
+      }
+}
